@@ -3,14 +3,14 @@
 
 -- one CPA can have multiple Taxpayers
 -- one Tax Return can have multiple Taxpayers (Joint Filing, Dependents, etc.)
--- one Taxpayer belongs to one Employment Sector
+-- one Taxpayer has one Employment Sector
 
 # INFORMATION THAT WILL BE STORED in a Tax Return:
 	-- Personal Information:
 		-- 1.	Full Name: As it appears on your legal documents.
 		-- 2.	Social Security Number (SSN) or Taxpayer Identification Number (TIN): For yourself, your spouse (if applicable), and dependents.
 		-- 3.	Address: Current mailing address.
-		-- 4.	Filing Status: Single, Married Filing Jointly, Married Filing Separately, Head of Household, or Qualifying Widow(er).
+		-- 4.	Filing Status: Single, Married Filing Jointly, Married Filing Separately, Head of Household, or Qualifying Surviving Spouse.
 		-- 5.	Date of Birth: For both you and your dependents.
 		-- 6.	Bank Account Details (if you want a direct deposit of your refund): Bank account number and routing number.
 	-- Income Information:
@@ -37,5 +37,31 @@
         
 CREATE SCHEMA `Tax Filing Management System`;
 
-# Creating the tables
+# Employment Sector Table
+CREATE TABLE `tax filing management system`.`employment_sector` (
+  `sector_id` INT NOT NULL AUTO_INCREMENT,
+  `sector_name` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`sector_id`),
+  UNIQUE INDEX `sector_id_UNIQUE` (`sector_id` ASC) VISIBLE,
+  UNIQUE INDEX `sector_name_UNIQUE` (`sector_name` ASC) VISIBLE);
+
+# Taxpayer Table
+CREATE TABLE `tax filing management system`.`taxpayer` (
+  `taxpayer_id` INT NOT NULL AUTO_INCREMENT,
+  `full_name` VARCHAR(100) NOT NULL,
+  `social_security_number` VARCHAR(11) NOT NULL,
+  `address` VARCHAR(75) NOT NULL,
+  `filing_status` VARCHAR(27) NOT NULL,
+  `date_of_birth` VARCHAR(10) NOT NULL,
+  `bank_account_number` VARCHAR(17) NOT NULL,
+  `bank_routing_number` VARCHAR(9) NOT NULL,
+  `employment_sector` INT NOT NULL,
+  PRIMARY KEY (`taxpayer_id`),
+  UNIQUE INDEX `taxpayer_id_UNIQUE` (`taxpayer_id` ASC) VISIBLE,
+  INDEX `employment_sector_idx` (`employment_sector` ASC) VISIBLE,
+  CONSTRAINT `employment_sector`
+    FOREIGN KEY (`employment_sector`)
+    REFERENCES `tax filing management system`.`employment_sector` (`sector_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 
