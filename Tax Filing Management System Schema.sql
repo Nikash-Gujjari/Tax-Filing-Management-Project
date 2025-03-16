@@ -1,12 +1,30 @@
-# A SCHEMA FOR MY TAX FILING MANAGEMENT SYSTEM
+# A SCHEMA FOR A TAX FILING MANAGEMENT SYSTEM
 
-
--- one CPA can have multiple Taxpayers
+# SCHEMA IDEAS
+-- one CPA can have multiple Tax Returns
 -- one Tax Return can have multiple Taxpayers (Joint Filing, Dependents, etc.)
+-- one Tax Return can have multiple:
+	-- W-2 Forms
+    -- 1099 Forms
+    -- Unemployment Benefits (1099-G)
+    -- Investment Income (1099-DIV or 1099-INT)
+    -- Retirement Income (1099-R)
+    -- Other Income Statements (Alimony, Gambling Winnings, etc.)
+    -- Dependent Care Expenses
+    -- Mortgage Interests
+    -- Student Loan Interests
+    -- Charitable Donations
+    -- Medical Expenses
+    -- Retirement Contributions
+    -- State Taxes
+    -- Local Taxes
+    -- Education Expenses
+    -- Health Savings Account Contributions
 -- one Taxpayer has one Employment Sector
 
-# INFORMATION THAT WILL BE STORED in a Tax Return:
-	-- Personal Information:
+# SPECIFIC INFORMATION THAT WILL BE STORED in the Forms related to the Tax Return:
+
+	-- Personal Information (Stored in Taxpayer):
 		-- 1.	Full Name: As it appears on your legal documents.
 		-- 2.	Social Security Number (SSN) or Taxpayer Identification Number (TIN): For yourself, your spouse (if applicable), and dependents.
 		-- 3.	Address: Current mailing address.
@@ -16,11 +34,10 @@
 	-- Income Information:
 		-- 1.	W-2 Forms: From your employer showing your wages, salary, and tax withheld.
 		-- 2.	1099 Forms: If you're a freelancer, contractor, or have other types of income (e.g., 1099-NEC, 1099-MISC, 1099-INT for interest income, 1099-DIV for dividends).
-		-- 3.	Self-Employment Income: Record of your earnings if you’re self-employed (along with expenses).
-		-- 4.	Unemployment Benefits: 1099-G if you received unemployment compensation.
-		-- 5.	Investment Income: Statements on interest, dividends, and capital gains (Form 1099-B, 1099-INT, 1099-DIV).
-		-- 6.	Retirement Income: Forms such as 1099-R for distributions from pensions, IRAs, etc.
-		-- 7.	Other Income: This could include rental income, alimony, gambling winnings, etc.
+		-- 3.	Unemployment Benefits: 1099-G if you received unemployment compensation.
+		-- 4.	Investment Income: Statements on interest, dividends, and capital gains (Form 1099-B, 1099-INT, 1099-DIV).
+		-- 5.	Retirement Income: Forms such as 1099-R for distributions from pensions, IRAs, etc.
+		-- 6.	Other Income: This could include rental income, alimony, gambling winnings, etc.
 	-- Deductions and Credits:
 		-- 1.	Child and Dependent Care Expenses: Receipts or records for daycare, education, or other care services.
 		-- 2.	Mortgage Interest: Form 1098 if you paid mortgage interest.
@@ -31,9 +48,6 @@
 		-- 7.	State and Local Taxes Paid: If you're itemizing, you can deduct state and local taxes paid.
 		-- 8.	Education Expenses: 1098-T form for tuition and qualified expenses.
 		-- 9.	Health Savings Account (HSA) Contributions: Form 5498-SA.
-	-- Other Relevant Information:
-		-- 1.	Estimated Tax Payments: If you've made estimated payments throughout the year.
-		-- 2.	Previous Year’s Tax Return: To carry over certain credits or deductions.
         
 CREATE SCHEMA `Tax Filing Management System`;
 
@@ -64,4 +78,229 @@ CREATE TABLE `tax filing management system`.`taxpayer` (
     REFERENCES `tax filing management system`.`employment_sector` (`sector_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
+
+# CPA Table
+CREATE TABLE `tax filing management system`.`cpa` (
+  `cpa_id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(255) NOT NULL,
+  `last_name` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `username` VARCHAR(30) NOT NULL,
+  `hashed_password` VARCHAR(30) NOT NULL,
+  `role` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`cpa_id`),
+  UNIQUE INDEX `w2_id_UNIQUE` (`cpa_id` ASC) VISIBLE,
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
+
+# Tax Return Table
+CREATE TABLE `tax filing management system`.`tax_return` (
+  `tax_return_id` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`tax_return_id`),
+  UNIQUE INDEX `tax_return_id_UNIQUE` (`tax_return_id` ASC) VISIBLE,
+  CONSTRAINT `tax_return_cpa`
+    FOREIGN KEY (`tax_return_id`)
+    REFERENCES `tax filing management system`.`cpa` (`cpa_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+  
+# Tables for the Various Forms in a Tax Return
+# the form_path VARCHAR will be used to store the path of the locally available copy of the tax return
+
+CREATE TABLE `tax filing management system`.`w2` (
+  `w2_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`w2_id`),
+  UNIQUE INDEX `w2_id_UNIQUE` (`w2_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_w2`
+    FOREIGN KEY (`w2_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`1099` (
+  `1099_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`1099_id`),
+  UNIQUE INDEX `1099_id_UNIQUE` (`1099_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_1099`
+    FOREIGN KEY (`1099_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`unemployment_benefit` (
+  `unemployment_benefit_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`unemployment_benefit_id`),
+  UNIQUE INDEX `unemployment_benefit_id_UNIQUE` (`unemployment_benefit_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_unemployment_benefit`
+    FOREIGN KEY (`unemployment_benefit_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`investment_income` (
+  `investment_income_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`investment_income_id`),
+  UNIQUE INDEX `investment_income_id_UNIQUE` (`investment_income_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_investment_income`
+    FOREIGN KEY (`investment_income_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+CREATE TABLE `tax filing management system`.`retirement_income` (
+  `retirement_income_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`retirement_income_id`),
+  UNIQUE INDEX `retirement_income_id_UNIQUE` (`retirement_income_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_retirement_income`
+    FOREIGN KEY (`retirement_income_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`other_income` (
+  `other_income_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`other_income_id`),
+  UNIQUE INDEX `other_income_id_UNIQUE` (`other_income_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_other_income`
+    FOREIGN KEY (`other_income_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`dependent_care_expense` (
+  `dependent_care_expense_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`dependent_care_expense_id`),
+  UNIQUE INDEX `dependent_care_expense_id_UNIQUE` (`dependent_care_expense_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_dependent_care_expense`
+    FOREIGN KEY (`dependent_care_expense_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+CREATE TABLE `tax filing management system`.`mortgage_interest` (
+  `mortgage_interest_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`mortgage_interest_id`),
+  UNIQUE INDEX `mortgage_interest_id_UNIQUE` (`mortgage_interest_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_mortgage_interest`
+    FOREIGN KEY (`mortgage_interest_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+CREATE TABLE `tax filing management system`.`student_loan_interest` (
+  `student_loan_interest_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`student_loan_interest_id`),
+  UNIQUE INDEX `student_loan_interest_id_UNIQUE` (`student_loan_interest_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_student_loan_interest`
+    FOREIGN KEY (`student_loan_interest_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`charitable_donation` (
+  `charitable_donation_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`charitable_donation_id`),
+  UNIQUE INDEX `charitable_donation_id_UNIQUE` (`charitable_donation_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_charitable_donation`
+    FOREIGN KEY (`charitable_donation_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+CREATE TABLE `tax filing management system`.`medical_expense` (
+  `medical_expense_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`medical_expense_id`),
+  UNIQUE INDEX `medical_expense_id_UNIQUE` (`medical_expense_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_medical_expense`
+    FOREIGN KEY (`medical_expense_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`retirement_contribution` (
+  `retirement_contribution_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`retirement_contribution_id`),
+  UNIQUE INDEX `retirement_contribution_id_UNIQUE` (`retirement_contribution_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_retirement_contribution`
+    FOREIGN KEY (`retirement_contribution_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`state_tax` (
+  `state_tax_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`state_tax_id`),
+  UNIQUE INDEX `state_tax_id_UNIQUE` (`state_tax_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_state_tax`
+    FOREIGN KEY (`state_tax_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`local_tax` (
+  `local_tax_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`local_tax_id`),
+  UNIQUE INDEX `local_tax_id_UNIQUE` (`local_tax_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_local_tax`
+    FOREIGN KEY (`local_tax_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`education_expense` (
+  `education_expense_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`education_expense_id`),
+  UNIQUE INDEX `education_expense_id_UNIQUE` (`education_expense_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_education_expense`
+    FOREIGN KEY (`education_expense_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+    
+CREATE TABLE `tax filing management system`.`health_savings_account_contribution` (
+  `health_savings_account_contribution_id` INT NOT NULL AUTO_INCREMENT,
+  `form_path` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`health_savings_account_contribution_id`),
+  UNIQUE INDEX `health_savings_account_contribution_id_UNIQUE` (`health_savings_account_contribution_id` ASC) VISIBLE,
+  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+  CONSTRAINT `tax_return_health_savings_account_contribution`
+    FOREIGN KEY (`health_savings_account_contribution_id`)
+    REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+
+    
+
 
