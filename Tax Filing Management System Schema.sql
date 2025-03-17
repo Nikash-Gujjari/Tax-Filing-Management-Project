@@ -129,14 +129,14 @@ CREATE TABLE `tax filing management system`.`w2` (
     ON DELETE CASCADE
     ON UPDATE CASCADE);
     
-CREATE TABLE `tax filing management system`.`1099` (
-  `1099_id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tax filing management system`.`form_1099` (
+  `form_1099_id` INT NOT NULL AUTO_INCREMENT,
   `form_path` VARCHAR(300) NOT NULL,
-  PRIMARY KEY (`1099_id`),
-  UNIQUE INDEX `1099_id_UNIQUE` (`1099_id` ASC) VISIBLE,
+  PRIMARY KEY (`form_1099_id`),
+  UNIQUE INDEX `form_1099_id_UNIQUE` (`form_1099_id` ASC) VISIBLE,
   UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_1099`
-    FOREIGN KEY (`1099_id`)
+    FOREIGN KEY (`form_1099_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
