@@ -13,11 +13,11 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table
-public class Dependent_Care_Expense {
+public class Medical_Expense {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private int dependent_care_expense_id;
+	private int medical_expense_id;
 	
 	@Column
 	private String form_path;
@@ -27,19 +27,19 @@ public class Dependent_Care_Expense {
 	@JsonIgnore
 	private Tax_return tax_return;
 
-	public Dependent_Care_Expense(int dependent_care_expense_id, String form_path, Tax_return tax_return) {
+	public Medical_Expense(int medical_expense_id, String form_path, Tax_return tax_return) {
 		super();
-		this.dependent_care_expense_id = dependent_care_expense_id;
+		this.medical_expense_id = medical_expense_id;
 		this.form_path = form_path;
 		this.tax_return = tax_return;
 	}
 
-	public int getDependent_care_expense_id() {
-		return dependent_care_expense_id;
+	public int getMedical_expense_id() {
+		return medical_expense_id;
 	}
 
-	public void setDependent_care_expense_id(int dependent_care_expense_id) {
-		this.dependent_care_expense_id = dependent_care_expense_id;
+	public void setMedical_expense_id(int medical_expense_id) {
+		this.medical_expense_id = medical_expense_id;
 	}
 
 	public String getForm_path() {
@@ -60,9 +60,10 @@ public class Dependent_Care_Expense {
 
 	@Override
 	public String toString() {
-		return "Dependent_Care_Expense [dependent_care_expense_id=" + dependent_care_expense_id + ", form_path="
-				+ form_path + ", tax_return=" + tax_return + "]";
+		return "Medical_Expense [medical_expense_id=" + medical_expense_id + ", form_path=" + form_path
+				+ ", tax_return=" + tax_return + "]";
 	}
+
 	
 }
 

@@ -1,6 +1,6 @@
 package com.skillstorm.tax_management_system_api.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +24,7 @@ public class Form_1099 {
 	
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
-	@JsonIgnoreProperties("form_1099")
+	@JsonIgnore
 	private Tax_return tax_return;
 
 	public Form_1099(int form_1099_id, String form_path, Tax_return tax_return) {

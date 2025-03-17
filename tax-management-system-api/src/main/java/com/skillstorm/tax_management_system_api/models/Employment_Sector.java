@@ -1,6 +1,6 @@
 package com.skillstorm.tax_management_system_api.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -23,7 +23,7 @@ public class Employment_Sector {
 	private String sector_name;
 	
 	@OneToOne(mappedBy="employment_sector", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("employment_sector")
+	@JsonIgnore
 	private Taxpayer taxpayer;
 
 	public Employment_Sector(int sector_id, String sector_name, Taxpayer taxpayer) {
