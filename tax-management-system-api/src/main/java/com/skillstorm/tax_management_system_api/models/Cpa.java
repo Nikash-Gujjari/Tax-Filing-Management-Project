@@ -42,14 +42,14 @@ public class Cpa {
 	
 	@OneToMany(mappedBy = "tax_return", cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("cpa")
-	private List<Tax_return> tax_return;
+	private List<Tax_Return> tax_return;
 	
 	public Cpa() {
 		super();
 	}
 
 	public Cpa(int cpa_id, String first_name, String last_name, String email, String username, String hashed_password,
-			String role, List<Tax_return> tax_return) {
+			String role, List<Tax_Return> tax_return) {
 		super();
 		this.cpa_id = cpa_id;
 		this.first_name = first_name;
@@ -117,11 +117,11 @@ public class Cpa {
 		this.role = role;
 	}
 
-	public List<Tax_return> getTax_return() {
+	public List<Tax_Return> getTax_return() {
 		return tax_return;
 	}
 
-	public void setTax_return(List<Tax_return> tax_return) {
+	public void setTax_return(List<Tax_Return> tax_return) {
 		this.tax_return = tax_return;
 	}
 

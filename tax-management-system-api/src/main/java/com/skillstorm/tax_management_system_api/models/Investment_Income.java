@@ -25,9 +25,9 @@ public class Investment_Income {
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnore
-	private Tax_return tax_return;
+	private Tax_Return tax_return;
 
-	public Investment_Income(int investment_income_id, String form_path, Tax_return tax_return) {
+	public Investment_Income(int investment_income_id, String form_path, Tax_Return tax_return) {
 		super();
 		this.investment_income_id = investment_income_id;
 		this.form_path = form_path;
@@ -50,11 +50,11 @@ public class Investment_Income {
 		this.form_path = form_path;
 	}
 
-	public Tax_return getTax_return() {
+	public Tax_Return getTax_return() {
 		return tax_return;
 	}
 
-	public void setTax_return(Tax_return tax_return) {
+	public void setTax_return(Tax_Return tax_return) {
 		this.tax_return = tax_return;
 	}
 

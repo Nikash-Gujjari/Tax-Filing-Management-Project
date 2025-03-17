@@ -25,9 +25,9 @@ public class Retirement_Income {
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnore
-	private Tax_return tax_return;
+	private Tax_Return tax_return;
 
-	public Retirement_Income(int retirement_income_id, String form_path, Tax_return tax_return) {
+	public Retirement_Income(int retirement_income_id, String form_path, Tax_Return tax_return) {
 		super();
 		this.retirement_income_id = retirement_income_id;
 		this.form_path = form_path;
@@ -50,11 +50,11 @@ public class Retirement_Income {
 		this.form_path = form_path;
 	}
 
-	public Tax_return getTax_return() {
+	public Tax_Return getTax_return() {
 		return tax_return;
 	}
 
-	public void setTax_return(Tax_return tax_return) {
+	public void setTax_return(Tax_Return tax_return) {
 		this.tax_return = tax_return;
 	}
 

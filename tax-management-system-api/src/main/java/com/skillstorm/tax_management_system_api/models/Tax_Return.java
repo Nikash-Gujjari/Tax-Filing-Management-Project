@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table
-public class Tax_return {
+public class Tax_Return {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
@@ -98,12 +98,12 @@ public class Tax_return {
 	private Charitable_Donation charitable_donation;
 	
 	
-	public Tax_return() {
+	public Tax_Return() {
 		super();
 	}
 
 
-	public Tax_return(int tax_return_id, String filing_status, Cpa cpa, List<Taxpayer> taxpayer, W2 w2,
+	public Tax_Return(int tax_return_id, String filing_status, Cpa cpa, List<Taxpayer> taxpayer, W2 w2,
 			Unemployment_Benefit unemployment_benefit, Student_Loan_Interest student_loan_interest, State_Tax state_tax,
 			Local_Tax local_tax, Retirement_Income retirement_income, Retirement_Contribution retirement_contribution,
 			Other_Income other_income, Mortgage_Interest mortgage_interest, Medical_Expense medical_expense,

@@ -25,10 +25,10 @@ public class Health_Savings_Account_Contribution {
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnore
-	private Tax_return tax_return;
+	private Tax_Return tax_return;
 
 	public Health_Savings_Account_Contribution(int health_savings_account_contribution_id, String form_path,
-			Tax_return tax_return) {
+			Tax_Return tax_return) {
 		super();
 		this.health_savings_account_contribution_id = health_savings_account_contribution_id;
 		this.form_path = form_path;
@@ -51,11 +51,11 @@ public class Health_Savings_Account_Contribution {
 		this.form_path = form_path;
 	}
 
-	public Tax_return getTax_return() {
+	public Tax_Return getTax_return() {
 		return tax_return;
 	}
 
-	public void setTax_return(Tax_return tax_return) {
+	public void setTax_return(Tax_Return tax_return) {
 		this.tax_return = tax_return;
 	}
 

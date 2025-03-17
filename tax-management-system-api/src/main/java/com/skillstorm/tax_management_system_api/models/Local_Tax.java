@@ -25,9 +25,9 @@ public class Local_Tax {
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnore
-	private Tax_return tax_return;
+	private Tax_Return tax_return;
 
-	public Local_Tax(int state_tax_id, String form_path, Tax_return tax_return) {
+	public Local_Tax(int state_tax_id, String form_path, Tax_Return tax_return) {
 		super();
 		this.state_tax_id = state_tax_id;
 		this.form_path = form_path;
@@ -50,11 +50,11 @@ public class Local_Tax {
 		this.form_path = form_path;
 	}
 
-	public Tax_return getTax_return() {
+	public Tax_Return getTax_return() {
 		return tax_return;
 	}
 
-	public void setTax_return(Tax_return tax_return) {
+	public void setTax_return(Tax_Return tax_return) {
 		this.tax_return = tax_return;
 	}
 

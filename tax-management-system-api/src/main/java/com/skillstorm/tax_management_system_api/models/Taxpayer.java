@@ -53,11 +53,11 @@ public class Taxpayer {
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnoreProperties("taxpayer")
-	private Tax_return tax_return;
+	private Tax_Return tax_return;
 
 	public Taxpayer(int taxpayer_id, String first_name, String middle_name, String last_name,
 			String social_security_number, String address, String date_of_birth, String bank_account_number,
-			String bank_routing_number, Employment_Sector employment_sector, Tax_return tax_return) {
+			String bank_routing_number, Employment_Sector employment_sector, Tax_Return tax_return) {
 		super();
 		this.taxpayer_id = taxpayer_id;
 		this.first_name = first_name;
@@ -152,11 +152,11 @@ public class Taxpayer {
 		this.employment_sector = employment_sector;
 	}
 
-	public Tax_return getTax_return() {
+	public Tax_Return getTax_return() {
 		return tax_return;
 	}
 
-	public void setTax_return(Tax_return tax_return) {
+	public void setTax_return(Tax_Return tax_return) {
 		this.tax_return = tax_return;
 	}
 
