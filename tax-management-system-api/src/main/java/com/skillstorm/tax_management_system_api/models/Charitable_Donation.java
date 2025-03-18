@@ -1,4 +1,5 @@
 package com.skillstorm.tax_management_system_api.models;
+import java.sql.Blob;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -8,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -19,15 +21,16 @@ public class Charitable_Donation {
 	@Column
 	private int student_loan_interest_id;
 	
+	@Lob
 	@Column
-	private String form_path;
+	private Blob form_path;
 	
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Charitable_Donation(int student_loan_interest_id, String form_path, Tax_Return tax_return) {
+	public Charitable_Donation(int student_loan_interest_id, Blob form_path, Tax_Return tax_return) {
 		super();
 		this.student_loan_interest_id = student_loan_interest_id;
 		this.form_path = form_path;
@@ -42,11 +45,11 @@ public class Charitable_Donation {
 		this.student_loan_interest_id = student_loan_interest_id;
 	}
 
-	public String getForm_path() {
+	public Blob getForm_path() {
 		return form_path;
 	}
 
-	public void setForm_path(String form_path) {
+	public void setForm_path(Blob form_path) {
 		this.form_path = form_path;
 	}
 

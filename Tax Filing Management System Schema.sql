@@ -119,10 +119,10 @@ CREATE TABLE `tax filing management system`.`taxpayer` (
 
 CREATE TABLE `tax filing management system`.`w2` (
   `w2_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`w2_id`),
   UNIQUE INDEX `w2_id_UNIQUE` (`w2_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
+ --  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_w2`
     FOREIGN KEY (`w2_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -131,10 +131,9 @@ CREATE TABLE `tax filing management system`.`w2` (
     
 CREATE TABLE `tax filing management system`.`form_1099` (
   `form_1099_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`form_1099_id`),
   UNIQUE INDEX `form_1099_id_UNIQUE` (`form_1099_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_1099`
     FOREIGN KEY (`form_1099_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -143,10 +142,9 @@ CREATE TABLE `tax filing management system`.`form_1099` (
     
 CREATE TABLE `tax filing management system`.`unemployment_benefit` (
   `unemployment_benefit_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`unemployment_benefit_id`),
   UNIQUE INDEX `unemployment_benefit_id_UNIQUE` (`unemployment_benefit_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_unemployment_benefit`
     FOREIGN KEY (`unemployment_benefit_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -155,10 +153,9 @@ CREATE TABLE `tax filing management system`.`unemployment_benefit` (
     
 CREATE TABLE `tax filing management system`.`investment_income` (
   `investment_income_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`investment_income_id`),
   UNIQUE INDEX `investment_income_id_UNIQUE` (`investment_income_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_investment_income`
     FOREIGN KEY (`investment_income_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -167,10 +164,9 @@ CREATE TABLE `tax filing management system`.`investment_income` (
 
 CREATE TABLE `tax filing management system`.`retirement_income` (
   `retirement_income_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`retirement_income_id`),
   UNIQUE INDEX `retirement_income_id_UNIQUE` (`retirement_income_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_retirement_income`
     FOREIGN KEY (`retirement_income_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -179,10 +175,9 @@ CREATE TABLE `tax filing management system`.`retirement_income` (
     
 CREATE TABLE `tax filing management system`.`other_income` (
   `other_income_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`other_income_id`),
   UNIQUE INDEX `other_income_id_UNIQUE` (`other_income_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_other_income`
     FOREIGN KEY (`other_income_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -191,10 +186,9 @@ CREATE TABLE `tax filing management system`.`other_income` (
     
 CREATE TABLE `tax filing management system`.`dependent_care_expense` (
   `dependent_care_expense_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`dependent_care_expense_id`),
   UNIQUE INDEX `dependent_care_expense_id_UNIQUE` (`dependent_care_expense_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_dependent_care_expense`
     FOREIGN KEY (`dependent_care_expense_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -203,10 +197,9 @@ CREATE TABLE `tax filing management system`.`dependent_care_expense` (
 
 CREATE TABLE `tax filing management system`.`mortgage_interest` (
   `mortgage_interest_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`mortgage_interest_id`),
   UNIQUE INDEX `mortgage_interest_id_UNIQUE` (`mortgage_interest_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_mortgage_interest`
     FOREIGN KEY (`mortgage_interest_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -215,10 +208,9 @@ CREATE TABLE `tax filing management system`.`mortgage_interest` (
 
 CREATE TABLE `tax filing management system`.`student_loan_interest` (
   `student_loan_interest_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`student_loan_interest_id`),
   UNIQUE INDEX `student_loan_interest_id_UNIQUE` (`student_loan_interest_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_student_loan_interest`
     FOREIGN KEY (`student_loan_interest_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -227,10 +219,9 @@ CREATE TABLE `tax filing management system`.`student_loan_interest` (
     
 CREATE TABLE `tax filing management system`.`charitable_donation` (
   `charitable_donation_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NULL,
   PRIMARY KEY (`charitable_donation_id`),
   UNIQUE INDEX `charitable_donation_id_UNIQUE` (`charitable_donation_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_charitable_donation`
     FOREIGN KEY (`charitable_donation_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -239,10 +230,9 @@ CREATE TABLE `tax filing management system`.`charitable_donation` (
 
 CREATE TABLE `tax filing management system`.`medical_expense` (
   `medical_expense_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`medical_expense_id`),
   UNIQUE INDEX `medical_expense_id_UNIQUE` (`medical_expense_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_medical_expense`
     FOREIGN KEY (`medical_expense_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -251,10 +241,9 @@ CREATE TABLE `tax filing management system`.`medical_expense` (
     
 CREATE TABLE `tax filing management system`.`retirement_contribution` (
   `retirement_contribution_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`retirement_contribution_id`),
   UNIQUE INDEX `retirement_contribution_id_UNIQUE` (`retirement_contribution_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_retirement_contribution`
     FOREIGN KEY (`retirement_contribution_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -263,10 +252,9 @@ CREATE TABLE `tax filing management system`.`retirement_contribution` (
     
 CREATE TABLE `tax filing management system`.`state_tax` (
   `state_tax_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`state_tax_id`),
   UNIQUE INDEX `state_tax_id_UNIQUE` (`state_tax_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_state_tax`
     FOREIGN KEY (`state_tax_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -275,10 +263,9 @@ CREATE TABLE `tax filing management system`.`state_tax` (
     
 CREATE TABLE `tax filing management system`.`local_tax` (
   `local_tax_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`local_tax_id`),
   UNIQUE INDEX `local_tax_id_UNIQUE` (`local_tax_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_local_tax`
     FOREIGN KEY (`local_tax_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -287,10 +274,9 @@ CREATE TABLE `tax filing management system`.`local_tax` (
     
 CREATE TABLE `tax filing management system`.`education_expense` (
   `education_expense_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`education_expense_id`),
   UNIQUE INDEX `education_expense_id_UNIQUE` (`education_expense_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_education_expense`
     FOREIGN KEY (`education_expense_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
@@ -299,10 +285,9 @@ CREATE TABLE `tax filing management system`.`education_expense` (
     
 CREATE TABLE `tax filing management system`.`health_savings_account_contribution` (
   `health_savings_account_contribution_id` INT NOT NULL AUTO_INCREMENT,
-  `form_path` VARCHAR(300) NOT NULL,
+  `form` LONGBLOB NOT NULL,
   PRIMARY KEY (`health_savings_account_contribution_id`),
   UNIQUE INDEX `health_savings_account_contribution_id_UNIQUE` (`health_savings_account_contribution_id` ASC) VISIBLE,
-  UNIQUE INDEX `form_path_UNIQUE` (`form_path` ASC) VISIBLE,
   CONSTRAINT `tax_return_health_savings_account_contribution`
     FOREIGN KEY (`health_savings_account_contribution_id`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)

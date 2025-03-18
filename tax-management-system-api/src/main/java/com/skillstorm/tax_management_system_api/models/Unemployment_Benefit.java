@@ -1,5 +1,7 @@
 package com.skillstorm.tax_management_system_api.models;
 
+import java.sql.Blob;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -8,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -19,35 +22,36 @@ public class Unemployment_Benefit {
 	@Column
 	private int unemployment_benefit_id;
 	
+	@Lob
 	@Column
-	private String form_path;
+	private Blob form;
 	
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Unemployment_Benefit(int unemployment_benefit_id, String form_path, Tax_Return tax_return) {
+	public Unemployment_Benefit(int unemployment_benefit_id, Blob form, Tax_Return tax_return) {
 		super();
 		this.unemployment_benefit_id = unemployment_benefit_id;
-		this.form_path = form_path;
+		this.form = form;
 		this.tax_return = tax_return;
 	}
 
-	public int getUnemployment_Benefit_id() {
+	public int getUnemployment_benefit_id() {
 		return unemployment_benefit_id;
 	}
 
-	public void setUnemployment_Benefit_id(int unemployment_benefit_id) {
+	public void setUnemployment_benefit_id(int unemployment_benefit_id) {
 		this.unemployment_benefit_id = unemployment_benefit_id;
 	}
 
-	public String getForm_path() {
-		return form_path;
+	public Blob getForm() {
+		return form;
 	}
 
-	public void setForm_path(String form_path) {
-		this.form_path = form_path;
+	public void setForm(Blob form) {
+		this.form = form;
 	}
 
 	public Tax_Return getTax_return() {
@@ -60,9 +64,11 @@ public class Unemployment_Benefit {
 
 	@Override
 	public String toString() {
-		return "Unemployment_Benefit [unemployment_benefit_id=" + unemployment_benefit_id + ", form_path=" + form_path
-				+ ", tax_return=" + tax_return + "]";
+		return "Unemployment_Benefit [unemployment_benefit_id=" + unemployment_benefit_id + ", tax_return=" + tax_return
+				+ "]";
 	}
+
+	
 
 	
 }

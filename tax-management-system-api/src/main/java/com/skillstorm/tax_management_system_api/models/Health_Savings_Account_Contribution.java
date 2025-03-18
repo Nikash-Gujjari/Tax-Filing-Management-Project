@@ -1,5 +1,7 @@
 package com.skillstorm.tax_management_system_api.models;
 
+import java.sql.Blob;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -8,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -19,19 +22,20 @@ public class Health_Savings_Account_Contribution {
 	@Column
 	private int health_savings_account_contribution_id;
 	
+	@Lob
 	@Column
-	private String form_path;
+	private Blob form;
 	
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Health_Savings_Account_Contribution(int health_savings_account_contribution_id, String form_path,
+	public Health_Savings_Account_Contribution(int health_savings_account_contribution_id, Blob form,
 			Tax_Return tax_return) {
 		super();
 		this.health_savings_account_contribution_id = health_savings_account_contribution_id;
-		this.form_path = form_path;
+		this.form = form;
 		this.tax_return = tax_return;
 	}
 
@@ -43,12 +47,12 @@ public class Health_Savings_Account_Contribution {
 		this.health_savings_account_contribution_id = health_savings_account_contribution_id;
 	}
 
-	public String getForm_path() {
-		return form_path;
+	public Blob getForm() {
+		return form;
 	}
 
-	public void setForm_path(String form_path) {
-		this.form_path = form_path;
+	public void setForm(Blob form) {
+		this.form = form;
 	}
 
 	public Tax_Return getTax_return() {
@@ -62,9 +66,10 @@ public class Health_Savings_Account_Contribution {
 	@Override
 	public String toString() {
 		return "Health_Savings_Account_Contribution [health_savings_account_contribution_id="
-				+ health_savings_account_contribution_id + ", form_path=" + form_path + ", tax_return=" + tax_return
-				+ "]";
+				+ health_savings_account_contribution_id + ", tax_return=" + tax_return + "]";
 	}
+
+	
 
 }
 
