@@ -21,7 +21,7 @@ import com.skillstorm.tax_management_system_api.models.Taxpayer;
 import com.skillstorm.tax_management_system_api.models.Unemployment_Benefit;
 import com.skillstorm.tax_management_system_api.models.W2;
 
-public record Tax_Return_DTO(String filing_status, Cpa cpa, List<Taxpayer> taxpayer, W2 w2,
+public record Tax_ReturnDTO(String filing_status, Cpa cpa, List<Taxpayer> taxpayer, W2 w2,
 		Unemployment_Benefit unemployment_benefit, Student_Loan_Interest student_loan_interest, State_Tax state_tax,
 		Local_Tax local_tax, Retirement_Income retirement_income, Retirement_Contribution retirement_contribution,
 		Other_Income other_income, Mortgage_Interest mortgage_interest, Medical_Expense medical_expense,

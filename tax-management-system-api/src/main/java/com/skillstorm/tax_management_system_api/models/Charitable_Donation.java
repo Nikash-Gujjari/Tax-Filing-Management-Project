@@ -19,7 +19,7 @@ public class Charitable_Donation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private int student_loan_interest_id;
+	private int charitable_donation_id;
 	
 	@Column
 	private String form_name;
@@ -34,16 +34,22 @@ public class Charitable_Donation {
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Charitable_Donation(int student_loan_interest_id, String form_name, Blob form_path, Tax_Return tax_return) {
+	public Charitable_Donation(int charitable_donation_id, String form_name, Blob form_path, Tax_Return tax_return) {
 		super();
-		this.student_loan_interest_id = student_loan_interest_id;
+		this.charitable_donation_id = charitable_donation_id;
+		this.form_name = form_name;
 		this.form_path = form_path;
 		this.tax_return = tax_return;
 	}
 
-	public int getStudent_loan_interest_id() {
-		return student_loan_interest_id;
+	public int getCharitable_donation_id() {
+		return charitable_donation_id;
 	}
+
+	public void setCharitable_donation_id(int charitable_donation_id) {
+		this.charitable_donation_id = charitable_donation_id;
+	}
+
 
 	public String getForm_name() {
 		return form_name;
@@ -53,9 +59,6 @@ public class Charitable_Donation {
 		this.form_name = form_name;
 	}
 
-	public void setStudent_loan_interest_id(int student_loan_interest_id) {
-		this.student_loan_interest_id = student_loan_interest_id;
-	}
 
 	public Blob getForm_path() {
 		return form_path;
@@ -75,8 +78,8 @@ public class Charitable_Donation {
 
 	@Override
 	public String toString() {
-		return "Charitable_Donation [student_loan_interest_id=" + student_loan_interest_id + ", form_path=" + form_path
-				+ ", form_name=" + form_name + ", tax_return=" + tax_return + "]";
+		return "Charitable_Donation [charitable_donation_id=" + charitable_donation_id + ", form_name=" + form_name
+				+ ", form_path=" + form_path + ", tax_return=" + tax_return + "]";
 	}
 
 	
