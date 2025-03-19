@@ -22,6 +22,9 @@ public class W2 {
 	@Column
 	private int w2_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form;
@@ -31,7 +34,7 @@ public class W2 {
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public W2(int w2_id, Blob form, Tax_Return tax_return) {
+	public W2(int w2_id, String form_name, Blob form, Tax_Return tax_return) {
 		super();
 		this.w2_id = w2_id;
 		this.form = form;
@@ -58,13 +61,22 @@ public class W2 {
 		return tax_return;
 	}
 
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
+	}
+
 	public void setTax_return(Tax_Return tax_return) {
 		this.tax_return = tax_return;
 	}
 
 	@Override
 	public String toString() {
-		return "W2 [w2_id=" + w2_id + ", form=" + form + ", tax_return=" + tax_return + "]";
+		return "W2 [w2_id=" + w2_id + ", form_name=" + form_name + ", form=" + form + ", tax_return=" + tax_return
+				+ "]";
 	}
 
 	

@@ -22,16 +22,20 @@ public class Local_Tax {
 	@Column
 	private int state_tax_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Local_Tax(int state_tax_id, Blob form, Tax_Return tax_return) {
+	public Local_Tax(int state_tax_id, String form_name, Blob form, Tax_Return tax_return) {
 		super();
 		this.state_tax_id = state_tax_id;
 		this.form = form;
@@ -50,6 +54,14 @@ public class Local_Tax {
 		return form;
 	}
 
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
+	}
+
 	public void setForm(Blob form) {
 		this.form = form;
 	}
@@ -64,7 +76,8 @@ public class Local_Tax {
 
 	@Override
 	public String toString() {
-		return "Local_Tax [state_tax_id=" + state_tax_id + ", form=" + form + ", tax_return=" + tax_return + "]";
+		return "Local_Tax [state_tax_id=" + state_tax_id + ", form_name=" + form_name + ", form=" + form
+				+ ", tax_return=" + tax_return + "]";
 	}
 	
 	

@@ -22,6 +22,9 @@ public class Mortgage_Interest {
 	@Column
 	private int mortgage_interest_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form;
@@ -31,11 +34,19 @@ public class Mortgage_Interest {
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Mortgage_Interest(int mortgage_interest_id, Blob form, Tax_Return tax_return) {
+	public Mortgage_Interest(int mortgage_interest_id, String form_name, Blob form, Tax_Return tax_return) {
 		super();
 		this.mortgage_interest_id = mortgage_interest_id;
 		this.form = form;
 		this.tax_return = tax_return;
+	}
+
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
 	}
 
 	public int getMortgage_interest_id() {
@@ -64,8 +75,8 @@ public class Mortgage_Interest {
 
 	@Override
 	public String toString() {
-		return "Mortgage_Interest [mortgage_interest_id=" + mortgage_interest_id + ", form=" + form + ", tax_return="
-				+ tax_return + "]";
+		return "Mortgage_Interest [mortgage_interest_id=" + mortgage_interest_id + ", form_name=" + form_name
+				+ ", form=" + form + ", tax_return=" + tax_return + "]";
 	}
 
 }

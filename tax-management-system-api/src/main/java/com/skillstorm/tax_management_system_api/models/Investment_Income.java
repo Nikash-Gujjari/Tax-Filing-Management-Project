@@ -22,6 +22,9 @@ public class Investment_Income {
 	@Column
 	private int investment_income_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form_path;
@@ -31,11 +34,19 @@ public class Investment_Income {
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Investment_Income(int investment_income_id, Blob form_path, Tax_Return tax_return) {
+	public Investment_Income(int investment_income_id, String form_name, Blob form_path, Tax_Return tax_return) {
 		super();
 		this.investment_income_id = investment_income_id;
 		this.form_path = form_path;
 		this.tax_return = tax_return;
+	}
+
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
 	}
 
 	public int getInvestment_income_id() {
@@ -64,8 +75,8 @@ public class Investment_Income {
 
 	@Override
 	public String toString() {
-		return "Investment_Income [investment_income_id=" + investment_income_id + ", form_path=" + form_path
-				+ ", tax_return=" + tax_return + "]";
+		return "Investment_Income [investment_income_id=" + investment_income_id + ", form_name=" + form_name
+				+ ", form_path=" + form_path + ", tax_return=" + tax_return + "]";
 	}
 
 	

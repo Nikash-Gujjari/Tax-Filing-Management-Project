@@ -22,6 +22,9 @@ public class Unemployment_Benefit {
 	@Column
 	private int unemployment_benefit_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form;
@@ -31,7 +34,7 @@ public class Unemployment_Benefit {
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Unemployment_Benefit(int unemployment_benefit_id, Blob form, Tax_Return tax_return) {
+	public Unemployment_Benefit(int unemployment_benefit_id, String form_name, Blob form, Tax_Return tax_return) {
 		super();
 		this.unemployment_benefit_id = unemployment_benefit_id;
 		this.form = form;
@@ -50,6 +53,14 @@ public class Unemployment_Benefit {
 		return form;
 	}
 
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
+	}
+
 	public void setForm(Blob form) {
 		this.form = form;
 	}
@@ -64,8 +75,8 @@ public class Unemployment_Benefit {
 
 	@Override
 	public String toString() {
-		return "Unemployment_Benefit [unemployment_benefit_id=" + unemployment_benefit_id + ", tax_return=" + tax_return
-				+ "]";
+		return "Unemployment_Benefit [unemployment_benefit_id=" + unemployment_benefit_id + ", form_name=" + form_name
+				+ ", form=" + form + ", tax_return=" + tax_return + "]";
 	}
 
 	

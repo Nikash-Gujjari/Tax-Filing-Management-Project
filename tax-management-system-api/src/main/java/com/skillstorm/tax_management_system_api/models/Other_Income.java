@@ -22,6 +22,9 @@ public class Other_Income {
 	@Column
 	private int other_income_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form;
@@ -31,7 +34,7 @@ public class Other_Income {
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Other_Income(int other_income_id, Blob form, Tax_Return tax_return) {
+	public Other_Income(int other_income_id, String form_name, Blob form, Tax_Return tax_return) {
 		super();
 		this.other_income_id = other_income_id;
 		this.form = form;
@@ -54,6 +57,14 @@ public class Other_Income {
 		this.form = form;
 	}
 
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
+	}
+
 	public Tax_Return getTax_return() {
 		return tax_return;
 	}
@@ -64,8 +75,8 @@ public class Other_Income {
 
 	@Override
 	public String toString() {
-		return "Other_Income [other_income_id=" + other_income_id + ", form=" + form + ", tax_return=" + tax_return
-				+ "]";
+		return "Other_Income [other_income_id=" + other_income_id + ", form_name=" + form_name + ", form=" + form
+				+ ", tax_return=" + tax_return + "]";
 	}
 
 }

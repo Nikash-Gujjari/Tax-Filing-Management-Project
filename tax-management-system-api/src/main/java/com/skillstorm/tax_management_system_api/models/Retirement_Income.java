@@ -22,6 +22,9 @@ public class Retirement_Income {
 	@Column
 	private int retirement_income_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form;
@@ -31,7 +34,7 @@ public class Retirement_Income {
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Retirement_Income(int retirement_income_id, Blob form, Tax_Return tax_return) {
+	public Retirement_Income(int retirement_income_id, String form_name, Blob form, Tax_Return tax_return) {
 		super();
 		this.retirement_income_id = retirement_income_id;
 		this.form = form;
@@ -44,6 +47,14 @@ public class Retirement_Income {
 
 	public void setRetirement_income_id(int retirement_income_id) {
 		this.retirement_income_id = retirement_income_id;
+	}
+
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
 	}
 
 	public Blob getForm() {
@@ -64,8 +75,8 @@ public class Retirement_Income {
 
 	@Override
 	public String toString() {
-		return "Retirement_Income [retirement_income_id=" + retirement_income_id + ", form=" + form + ", tax_return="
-				+ tax_return + "]";
+		return "Retirement_Income [retirement_income_id=" + retirement_income_id + ", form_name=" + form_name
+				+ ", form=" + form + ", tax_return=" + tax_return + "]";
 	}
 
 	

@@ -21,16 +21,20 @@ public class Charitable_Donation {
 	@Column
 	private int student_loan_interest_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form_path;
 	
+
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Charitable_Donation(int student_loan_interest_id, Blob form_path, Tax_Return tax_return) {
+	public Charitable_Donation(int student_loan_interest_id, String form_name, Blob form_path, Tax_Return tax_return) {
 		super();
 		this.student_loan_interest_id = student_loan_interest_id;
 		this.form_path = form_path;
@@ -39,6 +43,14 @@ public class Charitable_Donation {
 
 	public int getStudent_loan_interest_id() {
 		return student_loan_interest_id;
+	}
+
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
 	}
 
 	public void setStudent_loan_interest_id(int student_loan_interest_id) {
@@ -64,7 +76,7 @@ public class Charitable_Donation {
 	@Override
 	public String toString() {
 		return "Charitable_Donation [student_loan_interest_id=" + student_loan_interest_id + ", form_path=" + form_path
-				+ ", tax_return=" + tax_return + "]";
+				+ ", form_name=" + form_name + ", tax_return=" + tax_return + "]";
 	}
 
 	

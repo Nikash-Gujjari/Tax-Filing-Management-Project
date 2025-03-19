@@ -22,6 +22,9 @@ public class State_Tax {
 	@Column
 	private int state_tax_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form;
@@ -31,7 +34,7 @@ public class State_Tax {
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public State_Tax(int state_tax_id, Blob form, Tax_Return tax_return) {
+	public State_Tax(int state_tax_id, String form_name, Blob form, Tax_Return tax_return) {
 		super();
 		this.state_tax_id = state_tax_id;
 		this.form = form;
@@ -50,6 +53,14 @@ public class State_Tax {
 		return form;
 	}
 
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
+	}
+
 	public void setForm(Blob form) {
 		this.form = form;
 	}
@@ -64,7 +75,8 @@ public class State_Tax {
 
 	@Override
 	public String toString() {
-		return "State_Tax [state_tax_id=" + state_tax_id + ", form=" + form + ", tax_return=" + tax_return + "]";
+		return "State_Tax [state_tax_id=" + state_tax_id + ", form_name=" + form_name + ", form=" + form
+				+ ", tax_return=" + tax_return + "]";
 	}
 	
 }

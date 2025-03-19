@@ -22,6 +22,9 @@ public class Student_Loan_Interest {
 	@Column
 	private int student_loan_interest_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form;
@@ -31,7 +34,7 @@ public class Student_Loan_Interest {
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Student_Loan_Interest(int student_loan_interest_id, Blob form, Tax_Return tax_return) {
+	public Student_Loan_Interest(int student_loan_interest_id, String form_name, Blob form, Tax_Return tax_return) {
 		super();
 		this.student_loan_interest_id = student_loan_interest_id;
 		this.form = form;
@@ -40,6 +43,14 @@ public class Student_Loan_Interest {
 
 	public int getStudent_loan_interest_id() {
 		return student_loan_interest_id;
+	}
+
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
 	}
 
 	public void setStudent_loan_interest_id(int student_loan_interest_id) {
@@ -64,8 +75,8 @@ public class Student_Loan_Interest {
 
 	@Override
 	public String toString() {
-		return "Student_Loan_Interest [student_loan_interest_id=" + student_loan_interest_id + ", form=" + form
-				+ ", tax_return=" + tax_return + "]";
+		return "Student_Loan_Interest [student_loan_interest_id=" + student_loan_interest_id + ", form_name="
+				+ form_name + ", form=" + form + ", tax_return=" + tax_return + "]";
 	}
 
 }

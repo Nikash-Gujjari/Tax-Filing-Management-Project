@@ -22,6 +22,9 @@ public class Form_1099 {
 	@Column
 	private int form_1099_id;
 	
+	@Column
+	private String form_name;
+	
 	@Lob
 	@Column
 	private Blob form;
@@ -31,7 +34,7 @@ public class Form_1099 {
 	@JsonIgnore
 	private Tax_Return tax_return;
 
-	public Form_1099(int form_1099_id, Blob form, Tax_Return tax_return) {
+	public Form_1099(int form_1099_id, String form_name, Blob form, Tax_Return tax_return) {
 		super();
 		this.form_1099_id = form_1099_id;
 		this.form = form;
@@ -40,6 +43,14 @@ public class Form_1099 {
 
 	public int getForm_1099_id() {
 		return form_1099_id;
+	}
+
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
 	}
 
 	public void setForm_1099_id(int form_1099_id) {
@@ -64,7 +75,8 @@ public class Form_1099 {
 
 	@Override
 	public String toString() {
-		return "Form_1099 [form_1099_id=" + form_1099_id + ", form=" + form + ", tax_return=" + tax_return + "]";
+		return "Form_1099 [form_1099_id=" + form_1099_id + ", form_name=" + form_name + ", form=" + form
+				+ ", tax_return=" + tax_return + "]";
 	}
 
 	

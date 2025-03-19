@@ -22,20 +22,34 @@ public class Dependent_Care_Expense {
 	@Column
 	private int dependent_care_expense_id;
 	
+	@Column
+	private String form_name;
+
 	@Lob
 	@Column
 	private Blob form;
+
 	
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
 	@JsonIgnore
 	private Tax_Return tax_return;
-
-	public Dependent_Care_Expense(int dependent_care_expense_id, Blob form, Tax_Return tax_return) {
+	
+	
+	public Dependent_Care_Expense(int dependent_care_expense_id, String form_name, Blob form, Tax_Return tax_return) {
 		super();
 		this.dependent_care_expense_id = dependent_care_expense_id;
+		this.form_name = form_name;
 		this.form = form;
 		this.tax_return = tax_return;
+	}
+
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
 	}
 
 	public int getDependent_care_expense_id() {
@@ -64,8 +78,8 @@ public class Dependent_Care_Expense {
 
 	@Override
 	public String toString() {
-		return "Dependent_Care_Expense [dependent_care_expense_id=" + dependent_care_expense_id + ", form=" + form
-				+ ", tax_return=" + tax_return + "]";
+		return "Dependent_Care_Expense [dependent_care_expense_id=" + dependent_care_expense_id + ", form_name="
+				+ form_name + ", form=" + form + ", tax_return=" + tax_return + "]";
 	}
 
 	
