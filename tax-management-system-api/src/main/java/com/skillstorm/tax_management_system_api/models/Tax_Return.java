@@ -35,67 +35,67 @@ public class Tax_Return {
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private W2 w2;
+	private List<W2> w2;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Unemployment_Benefit unemployment_benefit;
+	private List<Unemployment_Benefit> unemployment_benefit;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Student_Loan_Interest student_loan_interest;
+	private List<Student_Loan_Interest> student_loan_interest;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private State_Tax state_tax;
+	private List<State_Tax> state_tax;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Local_Tax local_tax;
+	private List<Local_Tax> local_tax;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Retirement_Income retirement_income;
+	private List<Retirement_Income> retirement_income;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Retirement_Contribution retirement_contribution;
+	private List<Retirement_Contribution> retirement_contribution;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Other_Income other_income;
+	private List<Other_Income> other_income;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Mortgage_Interest mortgage_interest;
+	private List<Mortgage_Interest> mortgage_interest;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Medical_Expense medical_expense;
+	private List<Medical_Expense> medical_expense;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Investment_Income investment_income;
+	private List<Investment_Income> investment_income;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Health_Savings_Account_Contribution health_savings_account_contribution;
+	private List<Health_Savings_Account_Contribution>health_savings_account_contribution;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Form_1099 form_1099;
+	private List<Form_1099> form_1099;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Education_Expense education_expense;
+	private List<Education_Expense> education_expense;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Dependent_Care_Expense dependent_care_expense;
+	private List<Dependent_Care_Expense> dependent_care_expense;
 	
 	@OneToMany
 	@JsonIgnoreProperties("tax_return")
-	private Charitable_Donation charitable_donation;
+	private List<Charitable_Donation> charitable_donation;
 	
 	
 	public Tax_Return() {
@@ -103,14 +103,15 @@ public class Tax_Return {
 	}
 
 
-	public Tax_Return(int tax_return_id, String filing_status, Cpa cpa, List<Taxpayer> taxpayer, W2 w2,
-			Unemployment_Benefit unemployment_benefit, Student_Loan_Interest student_loan_interest, State_Tax state_tax,
-			Local_Tax local_tax, Retirement_Income retirement_income, Retirement_Contribution retirement_contribution,
-			Other_Income other_income, Mortgage_Interest mortgage_interest, Medical_Expense medical_expense,
-			Investment_Income investment_income,
-			Health_Savings_Account_Contribution health_savings_account_contribution, Form_1099 form_1099,
-			Education_Expense education_expense, Dependent_Care_Expense dependent_care_expense,
-			Charitable_Donation charitable_donation) {
+	public Tax_Return(int tax_return_id, String filing_status, Cpa cpa, List<Taxpayer> taxpayer, List<W2> w2,
+			List<Unemployment_Benefit> unemployment_benefit, List<Student_Loan_Interest> student_loan_interest,
+			List<State_Tax> state_tax, List<Local_Tax> local_tax, List<Retirement_Income> retirement_income,
+			List<Retirement_Contribution> retirement_contribution, List<Other_Income> other_income,
+			List<Mortgage_Interest> mortgage_interest, List<Medical_Expense> medical_expense,
+			List<Investment_Income> investment_income,
+			List<Health_Savings_Account_Contribution> health_savings_account_contribution, List<Form_1099> form_1099,
+			List<Education_Expense> education_expense, List<Dependent_Care_Expense> dependent_care_expense,
+			List<Charitable_Donation> charitable_donation) {
 		super();
 		this.tax_return_id = tax_return_id;
 		this.filing_status = filing_status;
@@ -175,170 +176,170 @@ public class Tax_Return {
 	}
 
 
-	public W2 getW2() {
+	public List<W2> getW2() {
 		return w2;
 	}
 
 
-	public void setW2(W2 w2) {
+	public void setW2(List<W2> w2) {
 		this.w2 = w2;
 	}
 
 
-	public Unemployment_Benefit getUnemployment_benefit() {
+	public List<Unemployment_Benefit> getUnemployment_benefit() {
 		return unemployment_benefit;
 	}
 
 
-	public void setUnemployment_benefit(Unemployment_Benefit unemployment_benefit) {
+	public void setUnemployment_benefit(List<Unemployment_Benefit> unemployment_benefit) {
 		this.unemployment_benefit = unemployment_benefit;
 	}
 
 
-	public Student_Loan_Interest getStudent_loan_interest() {
+	public List<Student_Loan_Interest> getStudent_loan_interest() {
 		return student_loan_interest;
 	}
 
 
-	public void setStudent_loan_interest(Student_Loan_Interest student_loan_interest) {
+	public void setStudent_loan_interest(List<Student_Loan_Interest> student_loan_interest) {
 		this.student_loan_interest = student_loan_interest;
 	}
 
 
-	public State_Tax getState_tax() {
+	public List<State_Tax> getState_tax() {
 		return state_tax;
 	}
 
 
-	public void setState_tax(State_Tax state_tax) {
+	public void setState_tax(List<State_Tax> state_tax) {
 		this.state_tax = state_tax;
 	}
 
 
-	public Local_Tax getLocal_tax() {
+	public List<Local_Tax> getLocal_tax() {
 		return local_tax;
 	}
 
 
-	public void setLocal_tax(Local_Tax local_tax) {
+	public void setLocal_tax(List<Local_Tax> local_tax) {
 		this.local_tax = local_tax;
 	}
 
 
-	public Retirement_Income getRetirement_income() {
+	public List<Retirement_Income> getRetirement_income() {
 		return retirement_income;
 	}
 
 
-	public void setRetirement_income(Retirement_Income retirement_income) {
+	public void setRetirement_income(List<Retirement_Income> retirement_income) {
 		this.retirement_income = retirement_income;
 	}
 
 
-	public Retirement_Contribution getRetirement_contribution() {
+	public List<Retirement_Contribution> getRetirement_contribution() {
 		return retirement_contribution;
 	}
 
 
-	public void setRetirement_contribution(Retirement_Contribution retirement_contribution) {
+	public void setRetirement_contribution(List<Retirement_Contribution> retirement_contribution) {
 		this.retirement_contribution = retirement_contribution;
 	}
 
 
-	public Other_Income getOther_income() {
+	public List<Other_Income> getOther_income() {
 		return other_income;
 	}
 
 
-	public void setOther_income(Other_Income other_income) {
+	public void setOther_income(List<Other_Income> other_income) {
 		this.other_income = other_income;
 	}
 
 
-	public Mortgage_Interest getMortgage_interest() {
+	public List<Mortgage_Interest> getMortgage_interest() {
 		return mortgage_interest;
 	}
 
 
-	public void setMortgage_interest(Mortgage_Interest mortgage_interest) {
+	public void setMortgage_interest(List<Mortgage_Interest> mortgage_interest) {
 		this.mortgage_interest = mortgage_interest;
 	}
 
 
-	public Medical_Expense getMedical_expense() {
+	public List<Medical_Expense> getMedical_expense() {
 		return medical_expense;
 	}
 
 
-	public void setMedical_expense(Medical_Expense medical_expense) {
+	public void setMedical_expense(List<Medical_Expense> medical_expense) {
 		this.medical_expense = medical_expense;
 	}
 
 
-	public Investment_Income getInvestment_income() {
+	public List<Investment_Income> getInvestment_income() {
 		return investment_income;
 	}
 
 
-	public void setInvestment_income(Investment_Income investment_income) {
+	public void setInvestment_income(List<Investment_Income> investment_income) {
 		this.investment_income = investment_income;
 	}
 
 
-	public Health_Savings_Account_Contribution getHealth_savings_account_contribution() {
+	public List<Health_Savings_Account_Contribution> getHealth_savings_account_contribution() {
 		return health_savings_account_contribution;
 	}
 
 
 	public void setHealth_savings_account_contribution(
-			Health_Savings_Account_Contribution health_savings_account_contribution) {
+			List<Health_Savings_Account_Contribution> health_savings_account_contribution) {
 		this.health_savings_account_contribution = health_savings_account_contribution;
 	}
 
 
-	public Form_1099 getForm_1099() {
+	public List<Form_1099> getForm_1099() {
 		return form_1099;
 	}
 
 
-	public void setForm_1099(Form_1099 form_1099) {
+	public void setForm_1099(List<Form_1099> form_1099) {
 		this.form_1099 = form_1099;
 	}
 
 
-	public Education_Expense getEducation_expense() {
+	public List<Education_Expense> getEducation_expense() {
 		return education_expense;
 	}
 
 
-	public void setEducation_expense(Education_Expense education_expense) {
+	public void setEducation_expense(List<Education_Expense> education_expense) {
 		this.education_expense = education_expense;
 	}
 
 
-	public Dependent_Care_Expense getDependent_care_expense() {
+	public List<Dependent_Care_Expense> getDependent_care_expense() {
 		return dependent_care_expense;
 	}
 
 
-	public void setDependent_care_expense(Dependent_Care_Expense dependent_care_expense) {
+	public void setDependent_care_expense(List<Dependent_Care_Expense> dependent_care_expense) {
 		this.dependent_care_expense = dependent_care_expense;
 	}
 
 
-	public Charitable_Donation getCharitable_donation() {
+	public List<Charitable_Donation> getCharitable_donation() {
 		return charitable_donation;
 	}
 
 
-	public void setCharitable_donation(Charitable_Donation charitable_donation) {
+	public void setCharitable_donation(List<Charitable_Donation> charitable_donation) {
 		this.charitable_donation = charitable_donation;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Tax_return [tax_return_id=" + tax_return_id + ", filing_status=" + filing_status + ", cpa=" + cpa
+		return "Tax_Return [tax_return_id=" + tax_return_id + ", filing_status=" + filing_status + ", cpa=" + cpa
 				+ ", taxpayer=" + taxpayer + ", w2=" + w2 + ", unemployment_benefit=" + unemployment_benefit
 				+ ", student_loan_interest=" + student_loan_interest + ", state_tax=" + state_tax + ", local_tax="
 				+ local_tax + ", retirement_income=" + retirement_income + ", retirement_contribution="
@@ -348,8 +349,6 @@ public class Tax_Return {
 				+ ", form_1099=" + form_1099 + ", education_expense=" + education_expense + ", dependent_care_expense="
 				+ dependent_care_expense + ", charitable_donation=" + charitable_donation + "]";
 	}
-	
-
 		
 }
 

@@ -19,6 +19,7 @@ public class Charitable_DonationService {
 		this.repo = repo;
 	}
 	
+
 	public ResponseEntity<Iterable<Charitable_Donation>> findAll() {
 		
 		Iterable<Charitable_Donation> charitable_donations = repo.findAll();
@@ -30,6 +31,7 @@ public class Charitable_DonationService {
 		
 	}
 	
+
 	public ResponseEntity<Charitable_Donation> findById(int id) {
 		Optional<Charitable_Donation> charitable_donation = repo.findById(id);
 		
@@ -39,6 +41,7 @@ public class Charitable_DonationService {
 			return ResponseEntity.status(HttpStatus.OK).body(charitable_donation.get());
 	}
 	
+
 	public ResponseEntity<Charitable_Donation> createOne(Charitable_DonationDTO charitable_donationDTO) { 
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED)

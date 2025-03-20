@@ -40,7 +40,7 @@ public class Cpa {
 	@Column
 	private String role;
 	
-	@OneToMany(mappedBy = "tax_return", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "cpa", cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("cpa")
 	private List<Tax_Return> tax_return;
 	
