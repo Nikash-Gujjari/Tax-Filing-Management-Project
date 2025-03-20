@@ -1,11 +1,9 @@
-export class form_1099 {
-    form_1099_id: number;
-    form_name: string;
-    form: Blob
+export class Tax_Return {
+    tax_return_id : number;
+    filing_status: string;
 
-    constructor(form_1099_id: number, form_name: string, form: Blob) {
-        this.form_1099_id = form_1099_id;
-        this.form_name = form_name;
-        this.form = form;
+    constructor(tax_return_id: number, filing_status: string) {
+        this.tax_return_id = tax_return_id;
+        this.filing_status = filing_status;
     }
 }
