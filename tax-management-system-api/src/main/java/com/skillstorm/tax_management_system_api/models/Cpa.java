@@ -35,20 +35,20 @@ public class Cpa {
 	private String username;
 	
 	@Column
-	private String hashed_password;
+	private String password;
 	
 	@Column
 	private String role;
 	
 	@OneToMany(mappedBy = "cpa", cascade=CascadeType.ALL)
-	@JsonIgnoreProperties("cpa")
+	@JsonIgnoreProperties
 	private List<Tax_Return> tax_return;
 	
 	public Cpa() {
 		super();
 	}
 
-	public Cpa(int cpa_id, String first_name, String last_name, String email, String username, String hashed_password,
+	public Cpa(int cpa_id, String first_name, String last_name, String email, String username, String password,
 			String role, List<Tax_Return> tax_return) {
 		super();
 		this.cpa_id = cpa_id;
@@ -56,7 +56,7 @@ public class Cpa {
 		this.last_name = last_name;
 		this.email = email;
 		this.username = username;
-		this.hashed_password = hashed_password;
+		this.password = password;
 		this.role = role;
 		this.tax_return = tax_return;
 	}
@@ -101,12 +101,12 @@ public class Cpa {
 		this.username = username;
 	}
 
-	public String getHashed_password() {
-		return hashed_password;
+	public String getpassword() {
+		return password;
 	}
 
-	public void setHashed_password(String hashed_password) {
-		this.hashed_password = hashed_password;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 
 	public String getRole() {
@@ -128,7 +128,7 @@ public class Cpa {
 	@Override
 	public String toString() {
 		return "Cpa [cpa_id=" + cpa_id + ", first_name=" + first_name + ", last_name=" + last_name + ", email=" + email
-				+ ", username=" + username + ", hashed_password=" + hashed_password + ", role=" + role + ", tax_return="
+				+ ", username=" + username + ", password=" + password + ", role=" + role + ", tax_return="
 				+ tax_return + "]";
 	}
 	

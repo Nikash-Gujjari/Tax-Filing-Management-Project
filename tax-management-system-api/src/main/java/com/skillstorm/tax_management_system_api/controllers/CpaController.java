@@ -25,6 +25,12 @@ public class CpaController {
 		this.service = service;
 	}
 	
+	
+	//login
+	@GetMapping("/login")
+	public ResponseEntity<Boolean> attemptLogin(@RequestParam(required = true) String username, @RequestParam(required = true) String password) {
+		return service.attemptLogin(username, password);
+	}
 	// find all
 	@GetMapping
 	public ResponseEntity<Iterable<Cpa>> findAll(@RequestParam(required = false) String startsWith) {

@@ -16,7 +16,7 @@ import com.skillstorm.tax_management_system_api.models.Form;
 import com.skillstorm.tax_management_system_api.services.FormService;
 
 @RestController
-@RequestMapping("/Form")
+@RequestMapping("/form")
 public class FormController {
 	
 	private FormService service;

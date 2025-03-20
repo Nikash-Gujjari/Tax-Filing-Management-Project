@@ -19,6 +19,19 @@ public class CpaService {
 		this.repo = repo;
 	}
 	
+	public ResponseEntity<Boolean> attemptLogin(String username, String password) {
+		
+		Iterable<Cpa> cpas = repo.attemptLogin(username, password);
+		
+		if(cpas.iterator().hasNext()) {
+			return ResponseEntity.status(HttpStatus.OK).body(true);
+		} else {
+			
+			// 401 status code means "Unauthorized"
+			return ResponseEntity.status(401).body(false);
+		}
+	}
+	
 	public ResponseEntity<Iterable<Cpa>> findAll() {
 		
 		Iterable<Cpa> cpas = repo.findAll();
@@ -42,7 +55,7 @@ public class CpaService {
 	public ResponseEntity<Cpa> createOne(CpaDTO cpaDTO) { 
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED)
-								 .body(repo.save(new Cpa(0, cpaDTO.first_name(), cpaDTO.last_name(), cpaDTO.email(), cpaDTO.username(), cpaDTO.hashed_password(),
+								 .body(repo.save(new Cpa(0, cpaDTO.first_name(), cpaDTO.last_name(), cpaDTO.email(), cpaDTO.username(), cpaDTO.password(),
 											cpaDTO.role(), cpaDTO.tax_return())));
 		} catch (Exception e) {
 			return ResponseEntity.status(500).body(null);
@@ -53,7 +66,7 @@ public class CpaService {
 	public ResponseEntity<Cpa> updateOne(int id, CpaDTO cpaDTO) {
 		if (repo.existsById(id))
 			return ResponseEntity.status(HttpStatus.OK)
-					 			 .body(repo.save(new Cpa(id, cpaDTO.first_name(), cpaDTO.last_name(), cpaDTO.email(), cpaDTO.username(), cpaDTO.hashed_password(),
+					 			 .body(repo.save(new Cpa(id, cpaDTO.first_name(), cpaDTO.last_name(), cpaDTO.email(), cpaDTO.username(), cpaDTO.password(),
 											cpaDTO.role(), cpaDTO.tax_return())));
 		else
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);

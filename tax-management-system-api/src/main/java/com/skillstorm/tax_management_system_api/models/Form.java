@@ -3,6 +3,7 @@ package com.skillstorm.tax_management_system_api.models;
 import java.sql.Blob;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +35,7 @@ public class Form {
 	
 	@ManyToOne
 	@JoinColumn(name="tax_return", referencedColumnName="tax_return_id")
-	@JsonIgnore
+	@JsonIgnoreProperties("form")
 	private Tax_Return tax_return;
 	
 	public Form() {

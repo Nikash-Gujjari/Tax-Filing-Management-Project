@@ -42,7 +42,7 @@ CREATE TABLE `tax filing management system`.`cpa` (
   `last_name` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `username` VARCHAR(30) NOT NULL,
-  `hashed_password` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(30) NOT NULL,
   `role` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`cpa_id`),
   UNIQUE INDEX `cpa_id_UNIQUE` (`cpa_id` ASC) VISIBLE,
@@ -53,10 +53,11 @@ CREATE TABLE `tax filing management system`.`cpa` (
 CREATE TABLE `tax filing management system`.`tax_return` (
   `tax_return_id` INT NOT NULL AUTO_INCREMENT,
   `filing_status` VARCHAR(27) NOT NULL,
+  `cpa` INT NOT NULL,
   PRIMARY KEY (`tax_return_id`),
   UNIQUE INDEX `tax_return_id_UNIQUE` (`tax_return_id` ASC) VISIBLE,
   CONSTRAINT `tax_return_cpa`
-    FOREIGN KEY (`tax_return_id`)
+    FOREIGN KEY (`cpa`)
     REFERENCES `tax filing management system`.`cpa` (`cpa_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
@@ -90,21 +91,24 @@ CREATE TABLE `tax filing management system`.`taxpayer` (
     ON UPDATE CASCADE);
 
 # General Form Type
-
 CREATE TABLE `tax filing management system`.`form` (
-  `w2_id` INT NOT NULL AUTO_INCREMENT,
+  `form_id` INT NOT NULL AUTO_INCREMENT,
   `form_type` VARCHAR(50) NOT NULL,
   `form_name` VARCHAR(50) NOT NULL,
   `form` LONGBLOB NOT NULL,
-  PRIMARY KEY (`w2_id`),
-  UNIQUE INDEX `w2_id_UNIQUE` (`w2_id` ASC) VISIBLE,
+  `tax_return` INT NOT NULL,
+  PRIMARY KEY (`form_id`),
+  UNIQUE INDEX `form_id_UNIQUE` (`form_id` ASC) VISIBLE,
   UNIQUE INDEX `form_name_UNIQUE` (`form_name` ASC) VISIBLE,
-  CONSTRAINT `tax_return_w2`
-    FOREIGN KEY (`w2_id`)
+  CONSTRAINT `tax_return_form`
+    FOREIGN KEY (`tax_return`)
     REFERENCES `tax filing management system`.`tax_return` (`tax_return_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
     
-
+    
+    
+# Creating Default Root Account     
+INSERT INTO cpa(first_name, last_name, email, username, password, role) VALUES('root', 'root', 'root', 'root', 'root', 'root');
 
 
