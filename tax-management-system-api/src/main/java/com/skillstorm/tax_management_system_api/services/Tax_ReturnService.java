@@ -42,13 +42,7 @@ public class Tax_ReturnService {
 	public ResponseEntity<Tax_Return> createOne(Tax_ReturnDTO tax_returnDTO) { 
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED)
-								 .body(repo.save(new Tax_Return(0, tax_returnDTO.filing_status(), tax_returnDTO.cpa(), tax_returnDTO.taxpayer(), tax_returnDTO.w2(),
-										 tax_returnDTO.unemployment_benefit(), tax_returnDTO.student_loan_interest(), tax_returnDTO.state_tax(),
-										 tax_returnDTO.local_tax(), tax_returnDTO.retirement_income(), tax_returnDTO.retirement_contribution(),
-										 tax_returnDTO.other_income(), tax_returnDTO.mortgage_interest(), tax_returnDTO.medical_expense(),
-										 tax_returnDTO.investment_income(),	tax_returnDTO.health_savings_account_contribution(), tax_returnDTO.form_1099(),
-										 tax_returnDTO.education_expense(), tax_returnDTO.dependent_care_expense(),
-										 tax_returnDTO.charitable_donation())));
+								 .body(repo.save(new Tax_Return(0, tax_returnDTO.filing_status(), tax_returnDTO.cpa(), tax_returnDTO.taxpayer(), tax_returnDTO.forms())));
 		} catch (Exception e) {
 			return ResponseEntity.status(500).body(null);
 		}
@@ -58,13 +52,7 @@ public class Tax_ReturnService {
 	public ResponseEntity<Tax_Return> updateOne(int id, Tax_ReturnDTO tax_returnDTO) {
 		if (repo.existsById(id))
 			return ResponseEntity.status(HttpStatus.OK)
-					 			 .body(repo.save(new Tax_Return(id,tax_returnDTO.filing_status(), tax_returnDTO.cpa(), tax_returnDTO.taxpayer(), tax_returnDTO.w2(),
-										 tax_returnDTO.unemployment_benefit(), tax_returnDTO.student_loan_interest(), tax_returnDTO.state_tax(),
-										 tax_returnDTO.local_tax(), tax_returnDTO.retirement_income(), tax_returnDTO.retirement_contribution(),
-										 tax_returnDTO.other_income(), tax_returnDTO.mortgage_interest(), tax_returnDTO.medical_expense(),
-										 tax_returnDTO.investment_income(),	tax_returnDTO.health_savings_account_contribution(), tax_returnDTO.form_1099(),
-										 tax_returnDTO.education_expense(), tax_returnDTO.dependent_care_expense(),
-										 tax_returnDTO.charitable_donation())));
+					 			 .body(repo.save(new Tax_Return(id,tax_returnDTO.filing_status(), tax_returnDTO.cpa(), tax_returnDTO.taxpayer(), tax_returnDTO.forms())));
 		else
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
 	}
