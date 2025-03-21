@@ -1,0 +1,12 @@
+.home_header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    white-space: no-wrap;
+}
+
+.home_h1 {
+    margin-left: 37%;
+    margin-right: 525px;
+    text-align: center;
+}

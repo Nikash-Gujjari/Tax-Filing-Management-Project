@@ -27,8 +27,7 @@ public class CpaService {
 			return ResponseEntity.status(HttpStatus.OK).body(true);
 		} else {
 			
-			// 401 status code means "Unauthorized"
-			return ResponseEntity.status(401).body(false);
+			return ResponseEntity.status(HttpStatus.OK).body(false);
 		}
 	}
 	
