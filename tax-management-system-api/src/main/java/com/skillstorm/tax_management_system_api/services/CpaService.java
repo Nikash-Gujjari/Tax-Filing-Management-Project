@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skillstorm.tax_management_system_api.dtos.CpaDTO;
 import com.skillstorm.tax_management_system_api.models.Cpa;
@@ -49,6 +50,15 @@ public class CpaService {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		else
 			return ResponseEntity.status(HttpStatus.OK).body(cpa.get());
+	}
+	
+	public ResponseEntity<Integer> findUsernameFromId(@RequestParam(required = true) String username) {
+		Optional<Cpa> cpa = repo.findUsernameFromId(username);
+		if(cpa.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body(cpa.get().getCpa_id());
+		}
 	}
 	
 	public ResponseEntity<Cpa> createOne(CpaDTO cpaDTO) { 

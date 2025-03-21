@@ -6,11 +6,10 @@ import{ useRef} from 'react';
 import '../css/LoginPage.css';
 
 
-export const LoginPage = () => {
+export const LoginPage = (props) => {
 
     // Route Navigation
     const navigate = useNavigate();
-
 
     // References to HTML elements to change their style
     const userNameElement = useRef(null);
@@ -35,14 +34,19 @@ export const LoginPage = () => {
                    password: `${password}`
                    }})
                    .then(response => {
-                        console.log(response.data);
                        if(response.data){
-                            goToHome();
-                       }else {
+                        // If we have a valid login, get the id of the login
+                          axios.get('http://localhost:8080/cpa/username', {
+                          params: {
+                              username: `${username}`
+                          }}).then(response => {
+                            {props.setter(parseInt(response.data))};
+                          });
+                          goToHome();
+                      } else {
                         wrongTextRef.current.textContent='Incorrect username or password';
                         userNameElement.current.value='';
                         passwordElement.current.value='';
-
                        }    
                    }).catch((error) => {
                        // handle error
@@ -62,4 +66,3 @@ export const LoginPage = () => {
     </div>
   );
 }
-

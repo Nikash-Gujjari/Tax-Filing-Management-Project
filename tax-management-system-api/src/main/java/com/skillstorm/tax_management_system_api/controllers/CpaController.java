@@ -49,6 +49,12 @@ public class CpaController {
 		return service.createOne(dto);
 	}
 	
+	// find Id by username
+	@GetMapping("/username")
+	public ResponseEntity<Integer> findUsernameFromId(@RequestParam(required = true) String username) {
+		return service.findUsernameFromId(username);
+	}
+	
 	// update one
 	@PutMapping("/{id}")
 	public ResponseEntity<Cpa> updateOne(@PathVariable int id, @RequestBody CpaDTO dto) {

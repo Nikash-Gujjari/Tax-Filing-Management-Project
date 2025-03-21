@@ -32,3 +32,8 @@
     cursor: pointer;
     filter: brightness(80%);
 }
+
+.loginpage_button:hover {
+    cursor: pointer;
+    filter: brightness(80%);
+}
